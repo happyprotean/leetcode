@@ -34,7 +34,7 @@ var removeNthFromEnd = function(head, n) {
   if (index < n) return null
 
   while (pre.next !== null) {
-    pre = pre.next
+    pre = pre.next  
     aft = aft.next
   }
   aft.next = aft.next.next
