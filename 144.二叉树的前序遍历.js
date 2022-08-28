@@ -18,22 +18,9 @@
  * @return {number[]}
  */
 var preorderTraversal = function(root) {
-    if (root === null) return [];
+    if (!root) return []
+    return [root.val].concat(preorderTraversal(root.left), preorderTraversal(root.right))
     
-    let result = [];
-    let stk = [];
-    stk.push(root);
-    while (stk.length) {
-        root = stk.pop();
-        result.push(root.val);
-        if (root.right !== null){
-            stk.push(root.right);
-        }
-        if(root.left !== null){
-            stk.push(root.left);
-        }
-    }
-    return result;
 };
 // @lc code=end
 
