@@ -7,20 +7,18 @@
 // @lc code=start
 function minSubArrayLen(target: number, nums: number[]): number {
   let res: number = Infinity
-  let left = 0,
-    right = 0,
-    sum = nums[left]
-  while (left <= right && right < nums.length) {
-    if (sum >= target) {
-      res = Math.min(res, right - left + 1)
+  let left = 0, sum = 0
+  for (let right = 0; right < nums.length; right++) {
+    // 更新右端点
+    sum += nums[right]
+    // 更新左端点
+    while(sum >= target) {
       sum -= nums[left]
+      res = Math.min(res, right - left + 1)
       left++
-    } else {
-      right++
-      sum += nums[right]
     }
   }
-  if (left === 0 && right === nums.length) return 0
+  if(res > nums.length) res = 0
   return res
 }
 let res = minSubArrayLen(7, [2,3,1,2,4,3])
