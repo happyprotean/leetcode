@@ -11,11 +11,11 @@ function trap(height: number[]): number {
   while (left <= right) {
     if (height[left] > height[right]) {
       suf_max = Math.max(suf_max, height[right])
-      res += Math.max(0, suf_max - height[right])
+      res += suf_max - height[right]
       right--
     } else {
       pre_max = Math.max(pre_max, height[left])
-      res += Math.max(0, pre_max - height[left])
+      res += pre_max - height[left]
       left++
     }
   }
