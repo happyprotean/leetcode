@@ -25,3 +25,13 @@ export class List {
     return this.head
   }
 }
+
+export function printList(head) {
+  if (head instanceof List) {
+    head = head.getHead()
+  }
+  while(head) {
+    console.log(head.val)
+    head = head.next
+  }
+}
