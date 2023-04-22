@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "使用javascript进行leetcode刷题，以熟悉javascript的常用api",
   "main": "1.两数之和.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
