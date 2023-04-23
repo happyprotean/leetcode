@@ -20,18 +20,16 @@ import { List, ListNode } from './data_structure/list.js'
  */
 var removeNthFromEnd = function (head, n) {
   let dummy = new ListNode(-1, head)
-  let fast = head, slow = head, pre = dummy
+  let fast = dummy, slow = dummy
   for (let i = 0; i < n; i++) {
     fast = fast.next
   }
-  while (fast) {
-    pre = pre.next
+  while (fast.next) {
     slow = slow.next
     fast = fast.next
   }
-  // slow此时指向倒数第n个节点
-  pre.next = slow.next
-  slow = null
+  // slow此时指向倒数第n+1个节点
+  slow.next = slow.next.next
   return dummy.next
 }
 // @lc code=end
