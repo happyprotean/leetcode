@@ -11,6 +11,7 @@
  * @return {number[]}
  */
 function low_bound(nums, target) {
+  if (nums.length === 0) return -1
   let left = 0, right = nums.length - 1
   while (left <= right) { // [left, right]
     const mid = Math.floor(left + (right - left) / 2)
@@ -30,7 +31,7 @@ function low_bound(nums, target) {
 
 var searchRange = function(nums, target) {
   let start = low_bound(nums, target)
-  if (start === nums.length || nums[start] > target) return [-1, -1]
+  if (start === - 1 || start === nums.length || nums[start] > target) return [-1, -1]
   return [start, low_bound(nums, target + 1) - 1]
 };
 // @lc code=end
