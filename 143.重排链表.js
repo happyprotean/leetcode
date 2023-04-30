@@ -3,7 +3,7 @@
  *
  * [143] 重排链表
  */
-import { List, printList } from './data_structure/list.js'
+import { List, printList } from './utils/list.js'
 
 // @lc code=start
 /**

@@ -4,7 +4,7 @@
  * [25] K 个一组翻转链表
  */
 
-import { List, ListNode } from "./data_structure/list.js";
+import { List, ListNode } from "./utils/list.js";
 
 // @lc code=start
 /**
