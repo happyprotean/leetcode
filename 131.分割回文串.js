@@ -9,27 +9,31 @@
  * @param {string} s
  * @return {string[][]}
  */
-// 假设每个字符间有一个逗号，对每个逗号考虑选它/不选它，通过逗号将字符串分割
-// 从答案的角度考虑，枚举第一个逗号的位置，枚举第二个逗号的位置...
+// 从输入的角度考虑，对每个逗号，选或不选
 var partition = function(s) {
   let res = [], cur = []
   const len = s.length
-  const dfs = i => {
+  // start 表示当前这段回文子串的开始位置
+  const dfs = (i, start) => {
     if (i === len) {
       res.push([...cur])
       return
     }
-    
-    for (let k = i; k < len; k++) {
-      const str = s.slice(i, k + 1)
-      if (str === str.split('').reverse().join('')) {
-        cur.push(str)
-        dfs(k+1)
-        cur.pop()
-      }
+
+    // 不选 i 和 i+1 之间的逗号（i=n-1 时右边没有逗号）
+    if (i < len - 1) {
+      dfs(i+1, start)
+    }
+  
+    // 选 i 和 i+1 之间的逗号
+    const str = s.slice(start, i + 1)
+    if (str === str.split('').reverse().join('')) {
+      cur.push(str)
+      dfs(i+1, i+1)
+      cur.pop()
     }
   } 
-  dfs(0)
+  dfs(0, 0)
   return res
 };
 // @lc code=end
