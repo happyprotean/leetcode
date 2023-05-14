@@ -14,9 +14,13 @@ var combinationSum3 = function(k, n) {
   let res = [], cur = []
   const dfs = i => {
     if (i > 10) return
-    if (cur.reduce((prev, val) => {
+    // 剪枝
+    if (n - i + 1 < k - cur.length) return // 数字个数不够
+    let sum = cur.reduce((prev, val) => {
       return prev + val
-    }, 0) === n && cur.length === k) {
+    }, 0)
+    if (sum > n) return // 已经 >n
+    if (sum === n && cur.length === k) {
       res.push([...cur])
       return
     }
