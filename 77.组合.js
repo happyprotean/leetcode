@@ -14,23 +14,21 @@
 var combine = function (n, k) {
   const res = [],
     cur = []
-  // dfs(i)表示从[1, ..., i]中选择数
-  const dfs = (i) => {
+  // dfs(i)表示从[i, ..., n]中选择数
+  const dfs = i => {
     if (cur.length === k) {
       res.push([...cur])
-      // 可以直接返回，剪枝
       return
     }
-    // [1, ..., i]最多有i个数，当小于剩余未选数的个数时，可以提前返回
-    // 因为即使全选也满足不了条件
-    if (i < k - cur.length) return
-    for (let j = i; j > 0; j--) {
+    // 元素个数肯定不满足条件，提前返回
+    if (n - i + 1 < k - cur.length) return
+    for (let j = i; j <= n; j++) {
       cur.push(j) 
-      dfs(j - 1)
+      dfs(j + 1)
       cur.pop()
     }
-  }
-  dfs(n)
+  } 
+  dfs(1)
   return res
 }
 // @lc code=end
