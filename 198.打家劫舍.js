@@ -10,13 +10,16 @@
  * @return {number}
  */
 var rob = function(nums) {
-  // 避免i-2下标小于0
-  // memo数组初始值为0
-  const memo = new Array(nums.length + 2).fill(0)
+  let f0 = 0, f1 = 0
   for (let i = 0; i < nums.length; i++) {
-    memo[i + 2] = Math.max(memo[i+1], memo[i] + nums[i])
+    let newf = Math.max(f1, f0 + nums[i])
+    f0 = f1
+    f1 = newf
   }
-  return memo[memo.length - 1]
+  return f1
 };
 // @lc code=end
+
+let res = rob([1, 2, 3, 1])
+console.log('res', res)
 
