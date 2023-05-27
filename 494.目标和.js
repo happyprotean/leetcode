@@ -13,23 +13,24 @@
 // s: nums所有元素和，p：加正号元素和
 // p - (s - p) = target ==> p = (s + target)/2
 var findTargetSumWays = function (nums, target) {
-  const s = nums.reduce((prev, cur) => prev + cur, 0)
-  if ((s + target) % 2 === 1 || s + target < 0) return 0
+  target += nums.reduce((prev, cur) => prev + cur, 0)
+  if (target % 2 === 1 || target < 0) return 0
+  target /= 2
   const n = nums.length
-  let memo = Array.from({ length: n + 1 }, () =>
-    Array((s + target) / 2 + 1).fill(0)
+  let memo = Array.from({ length: 2 }, () =>
+    Array(target + 1).fill(0)
   )
   memo[0][0] = 1
-  for (let i = 1; i < memo.length; i++) {
-    for (let j = 0; j < memo[i].length; j++) {
-      if (nums[i - 1] > j) {
-        memo[i][j] = memo[i - 1][j]
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = 0; j < memo[0].length; j++) {
+      if (nums[i] > j) {
+        memo[(i+1)%2][j] = memo[i%2][j]
       } else {
-        memo[i][j] = memo[i - 1][j] + memo[i - 1][j - nums[i - 1]]
+        memo[(i+1)%2][j] = memo[i%2][j] + memo[i%2][j - nums[i]]
       }
     }
   }
-  return memo[n][(s + target) / 2]
+  return memo[n%2][target]
 }
 // @lc code=end
 
