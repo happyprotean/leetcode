@@ -1,3 +1,0 @@
-# leetcode
-
-使用javascript进行leetcode刷题，以熟悉javascript的常用api
